@@ -2,15 +2,15 @@
 
 ## Current production resources
 
-- Temporary GitHub repository: https://github.com/Artificial-rhapsody/NKHH.git, branch `main`.
+- Client GitHub repository: https://github.com/Jiaping183/NKHH.git, branch `main`. The previous Artificial-rhapsody/NKHH repository is retained as an archive, not the publishing target.
 - Worker: https://story-interview-auth-production.hatayoru.workers.dev
 - Production D1: `story-users-production`, ID `9fe7b4ce-258b-42d3-b2b4-fc28a125832d`.
 - Production migration `0001_auth.sql` applied; `users`, `sessions`, `rate_limits` verified remotely.
-- Allowed frontend Origin: `https://artificial-rhapsody.github.io` (no repository path).
-- Intended Pages URL: https://artificial-rhapsody.github.io/NKHH/ ; availability must be verified after the Pages workflow finishes.
+- Allowed frontend Origin: `https://jiaping183.github.io` (no repository path). The old Pages Origin is no longer authorized to use this API.
+- Pages URL: https://jiaping183.github.io/NKHH/
 - Worker Secret: `GITHUB_TOKEN`; value is never committed. Use a Fine-grained PAT restricted to NKHH with Contents read/write. A 90-day lifetime is recommended; record the actual expiration privately and rotate before expiration.
 
-Production authentication was exercised against the public Worker: registration, login, session lookup, normal-user denial, administrator permission check and logout. The disposable production test account was removed and its absence verified. GitHub content writes require the repository's initial push before end-to-end verification.
+Production authentication was exercised against the public Worker: registration, login, session lookup, normal-user denial, administrator permission check and logout. Disposable production test accounts are removed after verification. Migration to the client GitHub repository retains the same Cloudflare account, Worker and D1, so existing users and administrator roles are preserved. Browser sessions are origin-specific; users must log in again on the new Pages domain.
 
 ## GitHub Pages and CI
 
@@ -57,6 +57,6 @@ Paste the new token only at the hidden prompt. Verify the new credential before 
 
 Register through the public website, then have an authorized operator change that exact user's role to `admin` in production D1 using controlled parameter binding or the Cloudflare D1 console. Do not concatenate arbitrary user input into shell SQL. Local `npm run admin:promote` is not a production tool.
 
-## Later transfer to client
+## Future account transfer
 
 Update the Git remote, production `GITHUB_OWNER`/`GITHUB_REPO`/`GITHUB_BRANCH`, target-repository PAT, Pages variable and Worker `ALLOWED_ORIGINS`. If moving Cloudflare accounts, recreate/migrate D1 and redeploy under that account. Account IDs and repository names are configuration, not secrets; token values and user databases must never be committed.

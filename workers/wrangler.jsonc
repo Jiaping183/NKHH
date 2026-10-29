@@ -10,7 +10,7 @@
  "env":{
   "production":{
    "name":"story-interview-auth-production",
-   "vars":{"GITHUB_OWNER":"Artificial-rhapsody","GITHUB_REPO":"NKHH","GITHUB_BRANCH":"main","ALLOWED_ORIGINS":"https://artificial-rhapsody.github.io"},
+   "vars":{"GITHUB_OWNER":"Jiaping183","GITHUB_REPO":"NKHH","GITHUB_BRANCH":"main","ALLOWED_ORIGINS":"https://jiaping183.github.io"},
    "secrets":{"required":["GITHUB_TOKEN"]},
    "d1_databases":[{"binding":"DB","database_name":"story-users-production","database_id":"9fe7b4ce-258b-42d3-b2b4-fc28a125832d","migrations_dir":"migrations"}]
   }
